@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.AddJobPage"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <Image Source="lightning.png" Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="50" VerticalOptions="Start" />
+                <Label Text="New Task" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" VerticalOptions="CenterAndExpand" Margin="0, 20, 0, 20"/>
+                <Grid RowSpacing="10" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+                    <Entry Text="{Binding Job.Name}" Grid.Row="0" Grid.Column="1" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Label Text="Description" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <Entry Text="{Binding Job.Description}" Grid.Row="1" Grid.Column="1" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Label Text="Address" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <Entry Text="{Binding Job.Address}" Grid.Row="2" Grid.Column="1" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Label Text="Note" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <Entry Text="{Binding Job.Note}" Grid.Row="3" Grid.Column="1" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Label Text="Reward" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <Entry Text="{Binding Job.Reward}" Grid.Row="4" Grid.Column="1" Keyboard="Numeric">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Label Text="Date Start" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <DatePicker MinimumDate="{Binding MinDateTime}" Date="{Binding Job.DateStart, , StringFormat='{0:d}'}" Grid.Row="5" Grid.Column="1">
+                        <DatePicker.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>DatePicker</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </DatePicker.Style>
+                    </DatePicker>
+                    <Label Text="Date End" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <DatePicker MinimumDate="{Binding MinDateTime}" Date="{Binding Job.DateEnd, , StringFormat='{0:d}'}" Grid.Row="6" Grid.Column="1">
+                        <DatePicker.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>DatePicker</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </DatePicker.Style>
+                    </DatePicker>
+                    <Label Text="Dead Line" Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Center" Style="{StaticResource Label}" />
+
+                    <TimePicker Time="{Binding Job.TimeDeadLine, StringFormat='{0:g}'}" Grid.Row="7" Grid.Column="1">
+                        <TimePicker.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>TimePicker</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </TimePicker.Style>
+                    </TimePicker>
+                </Grid>
+                <Grid ColumnSpacing="10" VerticalOptions="EndAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Back" Clicked="Cancel_Clicked" Grid.Column="0">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                    </Button>
+                    <Button Text="Confirm" Command="{Binding SaveJobCommand}" Grid.Column="1">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                        <Button.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <OnPlatform.Android>Green</OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.BackgroundColor>
+                    </Button>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

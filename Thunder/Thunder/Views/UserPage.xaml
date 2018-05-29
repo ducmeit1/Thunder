@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.UserPage"
+             Title="{Binding User.Name}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10, 20, 10, 20" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid RowSpacing="10" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="{Binding User.Name}" Grid.Row="0" Grid.Column="1"/>
+            <Label Text="Email" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="{Binding User.Email}" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Address" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="{Binding User.Address}" Grid.Row="2" Grid.Column="1"/>
+            <Label Text="Phone Number" Grid.Row="3" Grid.Column="0"/>
+            <Label Text="{Binding User.ContactNumber}" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

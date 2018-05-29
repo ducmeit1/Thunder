@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.ExtensionRegistrationPage"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            <Image Source="lightning.png" Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="50" VerticalOptions="Start" />
+            <Label Text="Confirm Your Email Address" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" VerticalOptions="CenterAndExpand" Margin="0, 20, 0, 20"/>
+            <Grid VerticalOptions="Center" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Row="0">
+                    <Label Text="Token:" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White"/>
+                    <Entry Text="{Binding Token}" Keyboard="Numeric" HorizontalOptions="FillAndExpand">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                </StackLayout>
+                <Grid ColumnSpacing="10" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Cancel" Grid.Column="0" Clicked="Cancel_Clicked">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                    </Button>
+                    <Button Text="Confirm"  Grid.Column="1" Command="{Binding ComfirmEmailAddressCommand}">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                        <Button.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <OnPlatform.Android>Green</OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.BackgroundColor>
+                    </Button>
+                </Grid>
+            </Grid>
+            <Button Text="Resend Token" Command="{Binding SendTokenCommand}" VerticalOptions="EndAndExpand">
+                <Button.Style>
+                    <OnPlatform x:TypeArguments="Style">
+                        <OnPlatform.Android>
+                            <x:StaticResource>Button</x:StaticResource>
+                        </OnPlatform.Android>
+                    </OnPlatform>
+                </Button.Style>
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

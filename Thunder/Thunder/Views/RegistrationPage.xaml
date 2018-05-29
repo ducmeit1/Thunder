@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.RegistrationPage"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <Image Source="lightning.png" Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="50" VerticalOptions="Start" />
+                <Label Text="Please Fill All The Details Below" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" VerticalOptions="CenterAndExpand" Margin="0, 20, 0, 20"/>
+                <Grid RowSpacing="20" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Entry Placeholder="Name" Grid.Row="0" Text="{Binding User.Name}" Keyboard="Text" HeightRequest="50">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Entry Placeholder="Email" Grid.Row="1" Text="{Binding User.Email}" Keyboard="Email">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Entry Placeholder="Password" IsPassword="true" Grid.Row="2" Text="{Binding User.Password}" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Entry Placeholder="Address" Grid.Row="3" Text="{Binding User.Address}" Keyboard="Default">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                    <Entry Placeholder="Contact Number" Grid.Row="4" Text="{Binding User.ContactNumber}" Keyboard="Numeric">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Entry</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Entry.Style>
+                    </Entry>
+                </Grid>
+                <Grid ColumnSpacing="10" VerticalOptions="EndAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Back" Clicked="Cancel_Clicked" Grid.Column="0">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                    </Button>
+                    <Button Text="Confirm" Command="{Binding RegistrationCommand}" Grid.Column="1">
+                        <Button.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <OnPlatform.Android>
+                                    <x:StaticResource>Button</x:StaticResource>
+                                </OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.Style>
+                        <Button.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <OnPlatform.Android>Green</OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.BackgroundColor>
+                    </Button>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿using SQLite;
+using System;
+using System.Diagnostics;
+using System.IO;
+using Thunder.iOS.IServices;
+using Thunder.IServices;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(SQLiteiOS))]
+namespace Thunder.iOS.IServices
+{
+    public class SQLiteiOS : ISQLite
+    {
+        private string GetDatabasePath()
+        {
+            var fileName = "thunder.db3";
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var libraryPath = Path.Combine(documentsPath, "..", "Library");
+            var fileFullPath = Path.Combine(libraryPath, fileName);
+            Debug.WriteLine($"[Log]: Full file path database from iOS device: {fileFullPath}");
+            return fileFullPath;
+        }
+
+        public SQLiteAsyncConnection GetSqLiteAsyncConnection() => new SQLiteAsyncConnection(GetDatabasePath());
+    }
+}

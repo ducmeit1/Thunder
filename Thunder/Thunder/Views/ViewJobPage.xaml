@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.ViewJobPage"
+             Title="{Binding Job.Name}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center">
+                <Grid RowSpacing="10" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.Name}" Grid.Row="0" Grid.Column="1"  IsEnabled="False"/>
+                    <Label Text="Description" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.Description}" Grid.Row="1" Grid.Column="1"  IsEnabled="False"/>
+                    <Label Text="Address" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.Address}" Grid.Row="2" Grid.Column="1" IsEnabled="False" />
+                    <Label Text="Note" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.Note}" Grid.Row="3" Grid.Column="1"  IsEnabled="False"/>
+                    <Label Text="Reward" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.Reward, StringFormat='{0} BND'}" Grid.Row="4" Grid.Column="1" IsEnabled="False" />
+                    <Label Text="Date Start" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.DateStart, StringFormat='{0:d}'}" Grid.Row="5" Grid.Column="1" IsEnabled="False"/>
+                    <Label Text="Date End" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.DateEnd, StringFormat='{0:d}'}" Grid.Row="6" Grid.Column="1" IsEnabled="False"/>
+                    <Label Text="Dead Line" Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Job.TimeDeadLine, StringFormat='{0:g}'}" Grid.Row="7" Grid.Column="1" IsEnabled="False"/>
+                </Grid>
+                <Button Text="Finish" Command="{Binding FinishCommand}" IsVisible="{Binding CanFinish}" VerticalOptions="EndAndExpand"/>
+                <Button Text="Contact" Command="{Binding ContactCommand}" CommandParameter="{Binding Job.UserId}" VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

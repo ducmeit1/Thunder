@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Thunder.Views.JobMarketPage"
+             xmlns:local="clr-namespace:Thunder;assembly=Thunder"
+             xmlns:converters="clr-namespace:Thunder.Helpers.Converters;assembly=Thunder">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Priority="0" Order="Primary" Clicked="NewTask_OnClicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="20" />
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:RewardsConverter x:Key="RewardsConverter"></converters:RewardsConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="10">
+            <SearchBar Placeholder="Name" Text="{Binding Keyword}" HorizontalOptions="FillAndExpand"/>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label Text="Minimum" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Slider Minimum="0" Maximum="10000" Value="{Binding MinRange}" HorizontalOptions="FillAndExpand"/>
+                <Label Text="{Binding MinRange, StringFormat='{0} BND'}" HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label Text="Maximum" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Slider Minimum="0" Maximum="10000" Value="{Binding MaxRange}" HorizontalOptions="FillAndExpand"/>
+                <Label Text="{Binding MaxRange, StringFormat='{0} BND'}" HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label Text="{Binding OrderBy, Converter={StaticResource RewardsConverter}}" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding OrderBy}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label Text="My Task" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding MyTask}"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Jobs}"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      CachingStrategy="RecycleElement"
+                      RefreshAllowed="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      SeparatorVisibility="Default"
+                      RowHeight="50"
+                      Margin="0, 15, 0, 5"
+                      ItemTapped="ListView_OnItemTapped"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Name, StringFormat='Name: {0}'}" FontAttributes="Bold" Grid.Row="0"/>
+                                <Label Text="{Binding Reward, StringFormat='Reward: {0} BND'}" Grid.Row="1" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
