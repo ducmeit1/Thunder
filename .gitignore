@@ -1,0 +1,8 @@
+._*
+.vs
+packages/
+*.userprefs
+.gitattributes
+bin/
+obj/
+Properties/
